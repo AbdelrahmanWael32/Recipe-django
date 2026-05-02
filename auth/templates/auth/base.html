@@ -1,0 +1,88 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'auth/css/style.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  {% block css %}{% endblock %}
+  <title>{% block title %}Recipe Finder{% endblock %}</title>
+</head>
+<body>
+
+  <nav class="flexbox flex-row justify-around align-items-center navbar">
+    <div class="flexbox flex-row align-items-center gap-small">
+      <a href="{% url 'home' %}">Homepage</a>
+    </div>
+
+    <div class="flexbox justify-evenly nav-center">
+      <a href="#">Our Recipes</a>
+      <a href="#">About Us</a>
+      <a href="#">Contact Us</a>
+    </div>
+
+    <div class="flexbox flex-row justify-center nav-end">
+
+      {% if user.is_authenticated %}
+        <div class="dropdown">
+          <button class="dropdown-toggle flexbox align-items-center" type="button">
+            My Account <span class="dropdown-arrow">▼</span>
+          </button>
+          <div class="dropdown-menu flex-column hidden">
+            <a href="#">My Profile</a>
+            <a href="#">Favorite recipes</a>
+            {% if user.profile.is_admin %}
+              <a href="#">Dashboard</a>
+            {% endif %}
+            <a href="{% url 'logout' %}">Sign Out</a>
+          </div>
+        </div>
+
+      {% else %}
+        <a href="{% url 'signup' %}">Sign up</a>
+        <a href="{% url 'login' %}">Login</a>
+      {% endif %}
+
+    </div>
+  </nav>
+
+
+  {% block content %}{% endblock %}
+
+
+  <footer class="footer flexbox flex-column">
+    <div class="flexbox flex-row justify-around footer-top">
+      <div class="flexbox flex-column">
+        <h1><span>Recipe Finder</span></h1>
+        <p>We aim to help people find the perfect recipes for the most delicious food</p>
+      </div>
+      <div class="flexbox flex-column">
+        <h1>Quick Links</h1>
+        <a href="#">Our Recipes</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+      </div>
+      <div class="flexbox flex-column">
+        <h1>Contact</h1>
+        <p>Phone: +20 10 63941971</p>
+        <p>Email: RecipeFinder@Gmail.com</p>
+      </div>
+      <div class="flexbox flex-column">
+        <h1>Follow Us</h1>
+        <div class="flexbox flex-row">
+          <a href="https://www.facebook.com/" class="fa fa-facebook" target="_blank"></a>
+          <a href="https://www.Instagram.com/" class="fa fa-instagram" target="_blank"></a>
+          <a href="https://www.twitter.com/" class="fa fa-twitter" target="_blank"></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="text-center">© 2026 <span>Recipe Finder</span>. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="{% static 'auth/js/base.js'%}" defer></script>
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

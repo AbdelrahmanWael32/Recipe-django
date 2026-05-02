@@ -1,0 +1,206 @@
+:root {
+  --main-dark: rgb(29, 22, 22);
+  --main-red: rgb(142, 22, 22);
+  --secondary-red: rgb(216, 64, 64);
+  --main-grey: rgb(238, 238, 238);
+}
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* START OF NAV BAR CSS */
+
+.navbar {
+  padding: 0.75rem;
+  margin-bottom: 0rem;
+  border-bottom: 0.1rem var(--main-dark);
+  background-color: var(--secondary-red);
+}
+
+.navbar a {
+  color: var(--main-grey);
+  font-size: 1.1rem;
+}
+
+.navbar a:hover {
+  color: var(--main-dark);
+}
+
+.nav-start {
+  gap: 0.5rem;
+}
+
+.nav-center {
+  width: 30%;
+}
+.nav-end {
+  width: 12%;
+  gap: 1.25rem;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-toggle {
+  color: var(--main-grey);
+  font-size: 1.1rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+  gap: 0.3rem;
+}
+
+.dropdown-toggle:hover {
+  color: var(--main-dark);
+}
+
+.dropdown-arrow {
+  font-size: 0.7rem;
+  transition: transform 0.2s;
+  transform: rotate(90deg);
+}
+
+.dropMenuIsOpen {
+  color: var(--main-dark);
+}
+
+.dropMenuIsOpen .dropdown-arrow {
+  transform: rotate(0deg);
+}
+
+.dropdown-menu {
+  display: flex;
+  position: absolute;
+  top: calc(100% + 0.75rem);
+  right: 0;
+  background-color: var(--main-grey);
+  border: 0.1rem solid rgb(33, 33, 33);
+  border-radius: 0.4rem;
+  min-width: 9rem;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 6767;
+}
+
+.dropdown-menu a {
+  color: rgb(33, 33, 33);
+  font-size: 1rem;
+  padding: 0.6rem 1rem;
+}
+
+.dropdown-menu a:hover {
+  background-color: var(--secondary-red);
+  color: var(--main-grey);
+}
+
+/* END OF NAV BAR CSS */
+
+/* START OF Footer CSS */
+.footer {
+  background-color: var(--main-dark);
+  color: rgb(224, 224, 224);
+  gap: 1rem;
+}
+
+.footer-top {
+  padding: 3rem;
+}
+.footer-bottom {
+  border-top: solid 0.1rem var(--main-grey);
+  padding: 1.5rem;
+}
+
+.footer div {
+  gap: 0.7rem;
+}
+
+.footer a {
+  color: var(--main-grey);
+}
+
+.footer a:hover {
+  color: var(--secondary-red);
+}
+.footer span {
+  color: var(--secondary-red);
+}
+a.fa {
+  font-size: 1.25rem;
+}
+
+/* END OF FOOTER CSS */
+
+/* 
+
+
+Rest is General use cases of CSS 
+
+
+*/
+.flexbox {
+  display: flex;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-evenly {
+  justify-content: space-evenly;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-end {
+  justify-content: end;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.align-self-center {
+  align-self: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.width-100 {
+  width: 100%;
+}
+
+.gap-small {
+  gap: 0.5rem;
+}
+
+.hidden {
+  display: none;
+}
