@@ -7,7 +7,7 @@
   <h1>The Best Family Recipes</h1>
   <p>........</p>
   {% if user.is_authenticated %}
-    <p>Welcome, <strong>{{ user.username }}</strong> you're <strong>{{is_admin}}</strong></p>
+    <p>Welcome, <strong>{{ user.username }}</strong></p>
   {% else %}
     <p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'signup' %}">sign up</a></p>
   {% endif %}

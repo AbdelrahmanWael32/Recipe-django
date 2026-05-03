@@ -11,7 +11,7 @@ def signup_view(request):
         email = request.POST['email']
         password = request.POST['password']
         confirm = request.POST['confirm_password']
-        is_admin = request.POST['is_admin'] == 'admin'
+        is_admin = request.POST.get('is_admin') == 'admin'
 
         if password != confirm:
             return render(request, 'auth/signup.html', {
