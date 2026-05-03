@@ -4,21 +4,36 @@ from django.contrib.auth.models import User
 from .models import Profile
 
 def signup_view(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         username = request.POST['username']
         email = request.POST['email']
         password = request.POST['password']
         confirm = request.POST['confirm_password']
-        is_admin = request.POST.get('is_admin') == 'admin'
+        is_admin = request.POST['is_admin'] == 'admin'
 
         if password != confirm:
-            return render(request, 'auth/signup.html', {'error': "Passwords don't match"})
+            return render(request, 'auth/signup.html', {
+                'error': "Passwords don't match",
+                'old_username': username,
+                'old_email': email, 
+            })
         if len(password) < 6:
-            return render(request, 'auth/signup.html', {'error': "Password too short"})
+            return render(request, 'auth/signup.html', {
+                'error': "Password too short",
+                'old_username':username,
+                'old_email':email})
         if User.objects.filter(username=username).exists():
-            return render(request, 'auth/signup.html', {'error': "Username already taken"})
+            return render(request, 'auth/signup.html', {
+                'error': "Username already taken",
+                'old_username':username,
+                'old_email':email})
         if User.objects.filter(email=email).exists():
-            return render(request, 'auth/signup.html', {'error': "This email already exist"})
+            return render(request, 'auth/signup.html', {
+                'error': "This email already exist",
+                'old_username':username,
+                'old_email':email})
 
         
         user = User.objects.create_user(username=username, email=email, password=password)
@@ -31,6 +46,8 @@ def signup_view(request):
 
 
 def login_view(request):
+    if request.user.is_authenticated:
+        return redirect('home')
     if request.method == 'POST':
         username_or_email = request.POST['username_or_email']
         password = request.POST['password']
@@ -48,7 +65,7 @@ def login_view(request):
             login(request, user)
             return redirect('home')
         else:
-            return render(request, 'auth/login.html', {'error': 'Wrong username or password'})
+            return render(request, 'auth/login.html', {'error': 'wrong username or password'})
 
     return render(request, 'auth/login.html')
 
@@ -57,6 +74,4 @@ def logout_view(request):
     logout(request)
     return redirect('login')
 
-def home_view(request):
-    return render(request, 'auth/index.html')
 # Create your views here.

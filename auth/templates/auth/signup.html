@@ -1,4 +1,4 @@
-{% extends 'auth/base.html' %}
+{% extends 'recipes/base.html' %}
 {% load static %}
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{% static 'auth/css/signup.css' %}" />
@@ -18,12 +18,12 @@
 
           <div class="form-group">
             <label for="username">Username</label>
-            <input id="username" type="text" name="username" maxlength="20" required />
+            <input id="username" type="text" name="username" maxlength="20" value="{{old_username}}" required />
           </div>
 
           <div class="form-group">
             <label for="email">Email</label>
-            <input id="email" type="email" name="email" required />
+            <input id="email" type="email" name="email" value="{{old_email}}" required />
           </div>
 
           <div class="form-group">
@@ -37,8 +37,9 @@
           </div>
           
           {% if error %}
-            <p style="color: red;">{{ error }}</p>
+            <p style="color: red; font-size: 12px;">{{ error }}</p>
           {% endif %}
+          <br>
 
 
           <div class="role-section">

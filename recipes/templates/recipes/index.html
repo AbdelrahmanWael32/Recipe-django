@@ -1,4 +1,4 @@
-{% extends 'auth/base.html' %}
+{% extends 'recipes/base.html' %}
 
 {% block title %}Home - Recipe Finder{% endblock %}
 
@@ -7,7 +7,7 @@
   <h1>The Best Family Recipes</h1>
   <p>........</p>
   {% if user.is_authenticated %}
-    <p>Welcome, <strong>{{ user.username }}</strong>!</p>
+    <p>Welcome, <strong>{{ user.username }}</strong> you're <strong>{{is_admin}}</strong></p>
   {% else %}
     <p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'signup' %}">sign up</a></p>
   {% endif %}
