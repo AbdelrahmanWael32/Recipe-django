@@ -14,23 +14,23 @@ def signup_view(request):
         is_admin = request.POST.get('is_admin') == 'admin'
 
         if password != confirm:
-            return render(request, 'auth/signup.html', {
+            return render(request, 'Accounts/signup.html', {
                 'error': "Passwords don't match",
                 'old_username': username,
                 'old_email': email, 
             })
         if len(password) < 6:
-            return render(request, 'auth/signup.html', {
+            return render(request, 'Accounts/signup.html', {
                 'error': "Password too short",
                 'old_username':username,
                 'old_email':email})
         if User.objects.filter(username=username).exists():
-            return render(request, 'auth/signup.html', {
+            return render(request, 'Accounts/signup.html', {
                 'error': "Username already taken",
                 'old_username':username,
                 'old_email':email})
         if User.objects.filter(email=email).exists():
-            return render(request, 'auth/signup.html', {
+            return render(request, 'Accounts/signup.html', {
                 'error': "This email already exist",
                 'old_username':username,
                 'old_email':email})
@@ -42,7 +42,7 @@ def signup_view(request):
         login(request, user)
         return redirect('home')
 
-    return render(request, 'auth/signup.html')
+    return render(request, 'Accounts/signup.html')
 
 
 def login_view(request):
@@ -65,9 +65,9 @@ def login_view(request):
             login(request, user)
             return redirect('home')
         else:
-            return render(request, 'auth/login.html', {'error': 'wrong username or password'})
+            return render(request, 'Accounts/login.html', {'error': 'wrong username or password'})
 
-    return render(request, 'auth/login.html')
+    return render(request, 'Accounts/login.html')
 
 
 def logout_view(request):
