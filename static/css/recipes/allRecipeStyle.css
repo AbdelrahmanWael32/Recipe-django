@@ -1,0 +1,128 @@
+/* 
+
+Start of all recipe page css 
+
+*/
+.recipe-box {
+  border: solid 0.1rem rgb(0, 0, 0);
+  border-radius: 1rem;
+  box-shadow: 0.3rem 0.3rem 1rem rgb(0, 0, 0);
+  padding: 1rem;
+  width: 25vw;
+  height: 95%;
+  gap: 0.9rem;
+  margin: 0.5rem;
+  font-size: 1.22rem;
+  color: var(--main-dark);
+}
+
+.recipe-box img {
+  border-radius: 1rem;
+  box-shadow: 0 0.3rem 0.4rem 0 rgba(0, 0, 0, 0.4);
+}
+
+.recipe-box-bottom {
+  gap: 1rem;
+}
+
+.recipe-box-bottom button {
+  padding: 0.3rem;
+  border-radius: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.recipe-box-bottom p {
+  margin: 0.2rem;
+}
+
+.all-recipes-container {
+  margin-bottom: 2rem;
+}
+/* _____________________________ */
+/* Recipe Card Container */
+/* Overall card */
+.recipe-card {
+  max-width: 700px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  font-family: "Segoe UI", sans-serif;
+  color: #333;
+}
+
+/* Title */
+.recipe-card h1 {
+  text-align: center;
+  font-size: 2rem;
+  margin: 1rem 0;
+  color: var(--secondary-red);
+}
+
+/* Image */
+.recipe-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-bottom: 4px solid var(--main-red);
+}
+
+/* Info (course, time, difficulty) */
+.recipe-data {
+  text-align: center;
+  font-size: 0.95rem;
+  color: #666;
+  margin: 1rem 0;
+}
+
+/* Section headings */
+.recipe-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+  color: var(--main-red);
+  border-bottom: 2px solid #eee;
+  padding-bottom: 0.3rem;
+  padding-left: 1rem;
+}
+
+/* Ingredients */
+.ingredients ul {
+  list-style: disc inside;
+  padding-left: 1rem;
+}
+
+.ingredients li {
+  margin-bottom: 0.4rem;
+}
+
+/* Instructions */
+.instructions ol {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.instructions li {
+  margin-bottom: 0.6rem;
+  line-height: 1.5;
+}
+
+#searchInput {
+  width: 30%;
+  padding: 0.5rem;
+  margin: 1rem auto;
+  display: block;
+  border: solid 0.1rem rgb(0, 0, 0);
+  border-radius: 0.5rem;
+}
+
+/* Recipe card links */
+.favorites-wrapper {
+  margin-bottom: 9rem;
+}
+
+.all-recipes-container a,
+.favorites-container a {
+  text-decoration: none;
+  color: inherit;
+}
