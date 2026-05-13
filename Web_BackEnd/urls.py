@@ -24,5 +24,4 @@ urlpatterns = [
     path('home/', TemplateView.as_view(template_name='index.html'), name='home'),
     path('Accounts/', include('Accounts.urls')),
     path('recipes/', include('recipes.urls'))
-    # path('recipes/', include('recipes.urls')),
 ]

@@ -1,14 +1,14 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Recipe
+from .models import Recipe, Ingredient, Instruction
 from django.http import HttpResponse
 
 def addRecipe(request):
     if(request.method == "POST"):
         recipe_name = request.POST.get("recipe_name")
-        course_type = request.POST.get("course_type")
+        course_type = request.POST.get("course_type").lower()
         cooking_time = request.POST.get("cooking_time")
-        selected_difficulty = request.POST.get("selected_difficulty")
+        selected_difficulty = request.POST.get("selected_difficulty").lower()
         recipe_img = request.POST.get("recipe_img")
         ingredients = request.POST.getlist('ingredients')
         instructions = request.POST.getlist('instructions')
@@ -44,3 +44,42 @@ def recipe_detail(request, pk):
     except Recipe.DoesNotExist:
         return render(request, 'recipe_detail.html', {'error': 'Recipe not found'})
     return render(request, 'recipe_detail.html', {'recipe': recipe})
+
+
+def about_us(request):
+    return render(request, 'about_us.html')
+
+def contact_us(request):
+    if request.method == 'POST':
+        name    = request.POST.get('name', '').strip()
+        email   = request.POST.get('email', '').strip()
+        message = request.POST.get('message', '').strip()
+
+        if not name or not email or not message:
+            return render(request, 'contact_us.html', {
+                'error_message': 'Please fill in all fields.'
+            })
+
+        print(f"Contact from {name} ({email}): {message}")
+
+        return render(request, 'contact_us.html', {
+            'success_message': f"Thank you, {name}! Your message has been sent."
+        })
+
+    return render(request, 'contact_us.html')
+
+def edit_recipe(request, recipe_id):
+    recipe = get_object_or_404(Recipe, id=recipe_id)
+    if request.method == 'POST':
+        recipe_name         = request.POST.get('recipe_name')
+        course_type         = request.POST.get('course_type').lower()
+        cooking_time        = request.POST.get('cooking_time')
+        selected_difficulty = request.POST.get('selected_difficulty').lower()
+        recipe_img          = request.POST.get('recipe_img')
+        ingredients         = request.POST.getlist('ingredients')
+        instructions        = request.POST.getlist('instructions')
+        Recipe.update_recipe(recipe_id, recipe_name, course_type, selected_difficulty, cooking_time, recipe_img, ingredients, instructions)
+        request.session["recipeAdded"] = "Recipe was updated successfully"
+        return redirect("home")
+    return render(request, 'adminrecipedetails.html', {'recipe': recipe})
+
