@@ -42,6 +42,29 @@ class Recipe(models.Model):
             Instruction.objects.create(recipe=recipe, step_number = i, text=instruction_text)
         return recipe
     
+    @staticmethod
+    def update_recipe(recipe_id, recipe_name, course_type, selected_difficulty, cooking_time, recipe_img, ingredients, instructions):
+        recipe = Recipe.objects.get(id=recipe_id)
+        recipe.name = recipe_name
+        recipe.course_type = course_type
+        recipe.difficulty = selected_difficulty
+        recipe.cooking_time = cooking_time
+        recipe.recipe_img = recipe_img
+        recipe.save()
+
+        recipe.ingredients.all().delete()
+        recipe.instructions.all().delete()
+
+        for ingredient in ingredients:
+            if ingredient.strip():
+                Ingredient.objects.create(recipe=recipe, text=ingredient.strip())
+
+        for i, instruction_text in enumerate(instructions, start=1):
+            if instruction_text.strip():
+                Instruction.objects.create(recipe=recipe, step_number=i, text=instruction_text.strip())
+
+        return recipe
+
 class Ingredient(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="ingredients")
     text = models.CharField(max_length=255) 

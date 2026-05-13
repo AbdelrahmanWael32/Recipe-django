@@ -1,15 +1,65 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}Home - Recipe Finder{% endblock %}
 
 {% block content %}
+
+<!-- Hero Section -->
 <div style="text-align:center; padding: 4rem;">
   <h1>The Best Family Recipes</h1>
-  <p>........</p>
-  {% if user.is_authenticated %}
-    <p>Welcome, <strong>{{ user.username }}</strong></p>
-  {% else %}
-    <p>Please <a href="{% url 'login' %}">login</a> or <a href="{% url 'signup' %}">sign up</a></p>
-  {% endif %}
+  <h2>Let's Find The Perfect Recipe For You!</h2>
+  <p>
+    {% if user.is_authenticated %}
+      Welcome, <strong>{{ user.username }}</strong>
+    {% else %}
+      <a href="{% url 'signup' %}">Get Started</a>
+    {% endif %}
+  </p>
 </div>
+
+<!-- Hero Image -->
+<div>
+  <img width="100%" src="{% static 'Images/Cutting_Food.jpg' %}" alt="Cutting Food" />
+  <br /><br /><br />
+</div>
+
+<!-- Features Section -->
+<div style="text-align:center;">
+  <h3>There Are So Many Recipes To Choose From With Us!</h3>
+  <h3>Over Than 2000 Recipes To Choose From!</h3>
+  <h3>Want To Make A Specific Dish? You Can Search With Ingredients!</h3>
+  <h3>Appetizers, Main Courses and Deserts. We Have It All!</h3>
+</div>
+
+<br /><br /><br />
+
+<!-- Testimonials Section -->
+<div style="text-align:center;">
+  <h2>Our Users Say</h2>
+  <p>"I have never had such wonderful meals like these" - Alex</p>
+  <p>"These recipes are perfect I can plan how much time I need to cook them" - Ahmed</p>
+  <p>"The instructions provided with the recipes always help me make dinner" - Basel</p>
+  <p>"Picking a meal has never been easier, I know which ingredients I need to plan ahead." - Omar</p>
+</div>
+
+<br /><br /><br />
+
+<!-- Dishes Section -->
+<div>
+  <div style="text-align:center;">
+    <h1>Some Of Our Dishes:</h1>
+    <a href="{% url 'all_recipes' %}">Check Out More Of Our Dishes</a>
+    <br /><br />
+  </div>
+  <div>
+    <img width="24%" src="{% static 'Images/dish1.jpg' %}" alt="Dish 1" />
+    <img width="24%" src="{% static 'Images/dish2.jpg' %}" alt="Dish 2" />
+    <img width="24%" src="{% static 'Images/dish3.jpg' %}" alt="Dish 3" />
+    <img width="24%" src="{% static 'Images/dish4.jpg' %}" alt="Dish 4" />
+  </div>
+</div>
+
+<br /><br /><br />
+
 {% endblock %}
