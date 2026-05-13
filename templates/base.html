@@ -13,13 +13,14 @@
 
   <nav class="flexbox flex-row justify-around align-items-center navbar">
     <div class="flexbox flex-row align-items-center gap-small">
+      <img class="nar-left" src="{% static "images/Logo2.png" %}" />
       <a href="{% url 'home' %}">Homepage</a>
     </div>
 
     <div class="flexbox justify-evenly nav-center">
-      <a href="#">Our Recipes</a>
-      <a href="#">About Us</a>
-      <a href="#">Contact Us</a>
+      <a href="{% url 'all_recipes' %}">Our Recipes</a>
+      <a href="{% url 'about_us' %}">About Us</a>
+      <a href="{% url 'contact_us' %}">Contact Us</a>
     </div>
 
     <div class="flexbox flex-row justify-center nav-end">
@@ -31,7 +32,7 @@
           </button>
           <div class="dropdown-menu flex-column hidden">
             <a href="/Accounts/profile">My Profile</a>
-            <a href="#">Favorite recipes</a>
+            <a href="{% url 'favorites' %}">Favorite recipes</a>
             {% if user.profile.is_admin %}
               <a href="#">Dashboard</a>
             {% endif %}
@@ -60,8 +61,8 @@
       <div class="flexbox flex-column">
         <h1>Quick Links</h1>
         <a href="#">Our Recipes</a>
-        <a href="#">About Us</a>
-        <a href="#">Contact Us</a>
+        <a href="{% url 'about_us' %}">About Us</a>
+        <a href="{% url 'contact_us' %}">Contact Us</a>
       </div>
       <div class="flexbox flex-column">
         <h1>Contact</h1>

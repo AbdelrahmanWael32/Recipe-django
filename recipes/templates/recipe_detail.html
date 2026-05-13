@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/recipes/allRecipeStyle.css' %}" />
+{% endblock %}
+
+{%block content%}
+
+{%if error%}
+<div class="error-message">
+<p>{{ error }}</p>
+</div>
+{%else%}
+<div class="recipe-card">
+    <h1>{{ recipe.name }}</h1>
+    <img width="60%" src="{{ recipe.recipe_img }}" alt="{{ recipe.name }}" />
+    <div class="recipe-data">
+        <p>course type: {{ recipe.course_type }}</p>
+        <p>cooking time: {{ recipe.cooking_time }}</p>
+        <p>difficulty: {{ recipe.difficulty }}</p>
+    </div>
+
+    <div class="ingredients">
+        <h3>Ingredients:</h3>
+        <ul>
+            {% for ingredient in recipe.ingredients.all %}
+                <li>{{ ingredient.text }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <div class="instructions">
+        <h3>Instructions:</h3>
+        <ol>
+            {% for instruction in recipe.instructions.all %}
+                <li>{{ instruction.text }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+</div>
+{%endif%}
+{% endblock %}

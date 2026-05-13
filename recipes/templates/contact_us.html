@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact Us - Recipe Finder{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/Recipes/ContactUsStyle.css' %}">
+{% endblock %}
+{% block content %}
+<div class="contact-wrapper">
+    <div class="contact-image">
+        <img src="{% static 'images/ContactUs.jpg' %}" alt="Contact Us" />
+    </div>
+    <div class="contact-right">
+        <h1>Contact Us</h1>
+        <div class="contact-bottom">
+            <form class="contact-form" method="POST" action="{% url 'contact_us' %}">
+                {% csrf_token %}
+                <label>Full Name</label>
+                <input type="text" name="name" />
+                <label>E-mail</label>
+                <input type="email" name="email" />
+                <label>Message</label>
+                <input type="text" name="message" />
+                <button type="submit">Contact Us</button>
+            </form>
+            <div class="contact-info">
+                <div>
+                    <h4>Contact</h4>
+                    <p>RecipeFinder@gmail.com</p>
+                </div>
+                <div>
+                    <h4>Based in</h4>
+                    <p>Cairo, Egypt</p>
+                </div>
+                <div class="contact-socials">
+                    <a href="https://www.facebook.com/"><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.Instagram.com/"><i class="fa fa-instagram"></i></a>
+                    <a href="https://www.twitter.com/"><i class="fa fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+        {% if success_message %}
+            <p class="form-notification success">{{ success_message }}</p>
+        {% endif %}
+        {% if error_message %}
+            <p class="form-notification error">{{ error_message }}</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+{% block extra_js %}
+<script src="{% static 'js/Recipes/ContactUs.js' %}"></script>
+{% endblock %}
