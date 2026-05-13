@@ -9,4 +9,6 @@ urlpatterns = [
     path('profile/avatar/', views.avatar_update_view, name='avatar_update'),
     path('favorites/', views.favorites, name='favorites'),
     path('favorites/<int:pk>/toggle/', views.toggle_favorite, name='toggle_favorite'),
+    path('dashboard/', views.admin_dashboard, name='admin_dashboard'),        # ← جديد
+    path('delete/<int:pk>/', views.delete_recipe, name='delete_recipe'),      # ← جديد
 ]

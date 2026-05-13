@@ -34,7 +34,7 @@
             <a href="/Accounts/profile">My Profile</a>
             <a href="{% url 'favorites' %}">Favorite recipes</a>
             {% if user.profile.is_admin %}
-              <a href="#">Dashboard</a>
+              <a href="{% url 'admin_dashboard' %}">Dashboard</a>
             {% endif %}
             <a href="{% url 'logout' %}">Sign Out</a>
           </div>
