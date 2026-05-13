@@ -15,11 +15,12 @@ def addRecipe(request):
 
         Recipe.create_recipe(recipe_name, course_type, selected_difficulty, cooking_time, recipe_img, ingredients, instructions)
 
-        
-        return HttpResponse("Recipe added Successfully!!! (This should be the admin dashboard)")
-        # pop the "recipe added successfully in admin_dashboard views.py"
-        request.session["recipeAdded"] = ('Recipe was added successfully')
-        return redirect("admin_dashboard")
+        request.session["recipeAdded"] = 'Recipe was added successfully'
+        return redirect("admin_dashboard")  # ← بيروح للdashboard مباشرة
+        # return HttpResponse("Recipe added Successfully!!! (This should be the admin dashboard)")
+        # # pop the "recipe added successfully in admin_dashboard views.py"
+        # request.session["recipeAdded"] = ('Recipe was added successfully')
+        # return redirect("admin_dashboard")
     
     return render(request, "add_Recipe.html")
 # Create your views here.
