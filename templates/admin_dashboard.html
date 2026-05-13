@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'admin_base.html' %}
 {% load static %}
 
 {% block title %}Admin Dashboard{% endblock %}
@@ -22,13 +22,13 @@
     {% for recipe in recipes %}
       <div class="recipe-box">
         <h2>Recipe #{{ forloop.counter }}</h2>
-        <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
+        <a href="{% url 'edit_recipe' recipe.pk %}">{{ recipe.name }}</a>
         <div>
           <p>Recipe Image:</p>
           <img src="{{ recipe.recipe_img }}" alt="{{ recipe.name }}" />
         </div>
         <div class="recipe-box-btns">
-          <a href="{% url 'recipe_detail' recipe.pk %}" class="add-recipe-btn edit-btn">Edit</a>
+          <a href="{% url 'edit_recipe' recipe.pk %}" class="add-recipe-btn edit-btn">Edit</a>
           <form method="POST" action="{% url 'delete_recipe' recipe.pk %}" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="add-recipe-btn delete-btn"

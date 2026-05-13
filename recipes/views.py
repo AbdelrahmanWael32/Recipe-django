@@ -81,6 +81,6 @@ def edit_recipe(request, recipe_id):
         instructions        = request.POST.getlist('instructions')
         Recipe.update_recipe(recipe_id, recipe_name, course_type, selected_difficulty, cooking_time, recipe_img, ingredients, instructions)
         request.session["recipeAdded"] = "Recipe was updated successfully"
-        return redirect("home")
+        return redirect("admin_dashboard")
     return render(request, 'adminrecipedetails.html', {'recipe': recipe})
 
