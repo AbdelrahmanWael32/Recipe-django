@@ -38,7 +38,6 @@ class Recipe(models.Model):
             Ingredient.objects.create(recipe=recipe, text=ingredient)
 
         for i, instruction_text in enumerate(instructions, start=1):
-            print(i)
             Instruction.objects.create(recipe=recipe, step_number = i, text=instruction_text)
         return recipe
     
