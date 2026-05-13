@@ -1,5 +1,5 @@
 (function () {
-    const tabs = document.querySelectorAll('#settings-tabs .nav-link');
+    const tabs = document.querySelectorAll('#settings-tabs a');
     const panels = { account: 'tab-account', security: 'tab-security'};
 
     tabs.forEach(tab => {
@@ -8,8 +8,8 @@
             tabs.forEach(t => t.classList.remove('active'));
             this.classList.add('active');
             const target = this.dataset.tab;
-            Object.values(panels).forEach(id => document.getElementById(id).classList.add('d-none'));
-            document.getElementById(panels[target]).classList.remove('d-none');
+            Object.values(panels).forEach(id => document.getElementById(id).classList.remove('active'));
+            document.getElementById(panels[target]).classList.add('active');
         });
     });
 
