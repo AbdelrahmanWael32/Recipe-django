@@ -1,17 +1,15 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}All Recipes{% endblock %}
+{% block title %}My Favorites{% endblock %}
 
 {% block css %}
 <link rel="stylesheet" type="text/css" href="{% static 'css/recipes/allRecipeStyle.css' %}" />
 {% endblock %}
 
 {% block content %}
-<h1 class="text-center">All Recipes Page</h1>
-<form method="get" action="">
-<input type="text" name="search" value="{{ query }}" id="searchInput" placeholder="Search recipes..." />
-</form>
+<h1 class="text-center">My Favorites</h1>
+
 <div class="justify-evenly flexbox flex-wrap all-recipes-container">
   {% if recipes %}
     {% for recipe in recipes %}

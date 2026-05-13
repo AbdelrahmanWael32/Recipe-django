@@ -32,7 +32,7 @@
           </button>
           <div class="dropdown-menu flex-column hidden">
             <a href="#">My Profile</a>
-            <a href="#">Favorite recipes</a>
+            <a href="{% url 'favorites' %}">Favorite recipes</a>
             {% if user.profile.is_admin %}
               <a href="#">Dashboard</a>
             {% endif %}

@@ -1,5 +1,5 @@
 from django.db.models import Q
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Recipe
 from django.http import HttpResponse
 
@@ -32,8 +32,12 @@ def all_recipes_view(request):
     if query:
         recipes = recipes.filter(Q(name__icontains=query) |
                                  Q(course_type__icontains=query) |
-                                 Q(difficulty__icontains=query))
+                                 Q(difficulty__icontains=query) |
+                                 Q(ingredients__text__icontains=query)).distinct()
     return render(request, 'all_recipes.html', {'recipes': recipes, "query": query })
 
 
 
+def recipe_detail(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
+    return render(request, 'recipe_detail.html', {'recipe': recipe})
