@@ -9,41 +9,26 @@
 
 {% block content %}
 <h1 class="text-center">All Recipes Page</h1>
-
-<input type="text" id="searchInput" placeholder="Search recipes..." autocomplete="off" />
-<p id="no-results" style="display:none;">No recipes found.</p>
+<form method="get" action="">
+<input type="text" name="search" value="{{ query }}" id="searchInput" placeholder="Search recipes..." />
+</form>
 <div class="justify-evenly flexbox flex-wrap all-recipes-container">
-  {% for recipe in recipes %}
-    <div
-      class="recipe_box"
-      data-name="{{ recipe.name|lower }}"
-      data-course="{{ recipe.course_type|lower }}"
-      data-difficulty="{{ recipe.difficulty|lower }}"
-    >
-      <div class="recipe-box flexbox flex-column justify-between">
-        <div class="flexbox flex-column">
-          <img
-            class="align-self-center"
-            width="50%"
-            src="#"
-            alt="WIP"
-          />
+  {% if recipes %}
+    {% for recipe in recipes %}
+        <div class="recipe-box flexbox flex-column justify-between">
+            <img src="{{ recipe.recipe_img }}" alt="{{ recipe.name }}" width="200" />
+            <h2>{{ recipe.name }}</h2>
+            <p>Course: {{ recipe.course_type }}</p>
+            <p>Time: {{ recipe.cooking_time }}</p>
+            <p>Difficulty: {{ recipe.difficulty }}</p>
         </div>
-
-        <div class="flexbox flex-column recipe-box-bottom">
-          <div><h2>{{ recipe.name }}</h2></div>
-          <div>
-            <p>course type: {{ recipe.course_type }}</p>
-            <p>cooking time: {{ recipe.cooking_time }}</p>
-            <p>difficulty: {{ recipe.difficulty }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+    {% else %}
+      <p>No recipes found.</p>
+    {% endif %}
 </div>
 {% endblock %}
 
-{% block extra_js %}
+<!-- {% block extra_js %}
 <script src="{% static 'js/recipes/allRecipe.js' %}" defer></script>
-{% endblock %}
+{% endblock %} -->
