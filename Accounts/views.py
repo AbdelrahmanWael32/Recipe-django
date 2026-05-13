@@ -129,7 +129,8 @@ def avatar_update_view(request):
         profile.save()
         return JsonResponse({'url': profile.avatar.url})
     return JsonResponse({'error': 'No file provided'}, status=400)
-@login_required
+
+@login_required(login_url='login')
 def toggle_favorite(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
     profile = request.user.profile
@@ -141,7 +142,7 @@ def toggle_favorite(request, pk):
     
     return redirect(request.META.get('HTTP_REFERER', 'all_recipes'))
 
-@login_required
+@login_required(login_url='login')
 def favorites(request):
     profile = request.user.profile
     recipes = profile.favourite_recipes.all()
