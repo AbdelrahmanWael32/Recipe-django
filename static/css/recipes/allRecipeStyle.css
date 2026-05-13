@@ -37,6 +37,7 @@ Start of all recipe page css
 
 .all-recipes-container {
   margin-bottom: 2rem;
+  min-height: 53vh;
 }
 /* _____________________________ */
 /* Recipe Card Container */
@@ -50,6 +51,7 @@ Start of all recipe page css
   overflow: hidden;
   font-family: "Segoe UI", sans-serif;
   color: #333;
+  min-height: 50vh;
 }
 
 /* Title */
@@ -125,4 +127,12 @@ Start of all recipe page css
 .favorites-container a {
   text-decoration: none;
   color: inherit;
+}
+
+.error-message {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--main-red);
+  margin-top: 2rem;
+  min-height: 56.9vh;
 }

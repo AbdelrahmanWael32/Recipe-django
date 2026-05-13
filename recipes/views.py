@@ -13,7 +13,7 @@ def addRecipe(request):
         ingredients = request.POST.getlist('ingredients')
         instructions = request.POST.getlist('instructions')
 
-        Recipe.create_recipe(recipe_name, course_type, cooking_time, selected_difficulty, recipe_img, ingredients, instructions)
+        Recipe.create_recipe(recipe_name, course_type, selected_difficulty, cooking_time, recipe_img, ingredients, instructions)
 
         
         return HttpResponse("Recipe added Successfully!!! (This should be the admin dashboard)")
@@ -39,5 +39,8 @@ def all_recipes_view(request):
 
 
 def recipe_detail(request, pk):
-    recipe = get_object_or_404(Recipe, pk=pk)
+    try:
+        recipe = Recipe.objects.get(pk=pk)
+    except Recipe.DoesNotExist:
+        return render(request, 'recipe_detail.html', {'error': 'Recipe not found'})
     return render(request, 'recipe_detail.html', {'recipe': recipe})

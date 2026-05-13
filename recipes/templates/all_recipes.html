@@ -16,7 +16,7 @@
   {% if recipes %}
     {% for recipe in recipes %}
         <a href="{% url 'recipe_detail' recipe.pk %}">
-        <div class="recipe-box flexbox flex-column justify-between">
+        <div class="recipe-box flexbox flex-column justify-between align-items-center">
             <img src="{{ recipe.recipe_img }}" alt="{{ recipe.name }}" width="200" />
             <h2>{{ recipe.name }}</h2>
             <p>Course: {{ recipe.course_type }}</p>
@@ -42,7 +42,3 @@
 
 </div>
 {% endblock %}
-
-<!-- {% block extra_js %}
-<script src="{% static 'js/recipes/allRecipe.js' %}" defer></script>
-{% endblock %} -->

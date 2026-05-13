@@ -5,6 +5,12 @@
 {% endblock %}
 
 {%block content%}
+
+{%if error%}
+<div class="error-message">
+<p>{{ error }}</p>
+</div>
+{%else%}
 <div class="recipe-card">
     <h1>{{ recipe.name }}</h1>
     <img width="60%" src="{{ recipe.recipe_img }}" alt="{{ recipe.name }}" />
@@ -32,4 +38,5 @@
         </ol>
     </div>
 </div>
+{%endif%}
 {% endblock %}
