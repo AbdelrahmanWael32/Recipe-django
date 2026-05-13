@@ -1,0 +1,41 @@
+.admin-recipe-wrapper {
+  margin: 40px auto;
+  padding: 0 20px 60px;
+}
+
+#recipe-form {
+  display: none;
+}
+
+#recipe-form.visible {
+  display: block;
+}
+
+#img-preview {
+  display: block;
+  max-width: 200px;
+  margin-top: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn-save {
+  padding: 12px 28px;
+  background: #2a7a2a;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.btn-save:hover {
+  background: #1f5e1f;
+}

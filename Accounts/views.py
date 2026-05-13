@@ -1,9 +1,10 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.http import JsonResponse
 from .models import Profile
+from recipes.models import Recipe
 
 
 def signup_view(request):
@@ -128,3 +129,20 @@ def avatar_update_view(request):
         profile.save()
         return JsonResponse({'url': profile.avatar.url})
     return JsonResponse({'error': 'No file provided'}, status=400)
+@login_required
+def toggle_favorite(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
+    profile = request.user.profile
+    
+    if profile in recipe.favourited_by.all():
+        recipe.favourited_by.remove(profile)
+    else:
+        recipe.favourited_by.add(profile)
+    
+    return redirect(request.META.get('HTTP_REFERER', 'all_recipes'))
+
+@login_required
+def favorites(request):
+    profile = request.user.profile
+    recipes = profile.favourite_recipes.all()
+    return render(request, 'Accounts/favorites.html', {'recipes': recipes})

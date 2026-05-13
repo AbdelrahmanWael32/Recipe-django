@@ -1,0 +1,116 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block title %}Edit Recipe{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/Recipes/addRecipeStyle.css' %}">
+<link rel="stylesheet" href="{% static 'css/Recipes/adminRecipeDetails.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="admin-recipe-wrapper">
+    <div id="recipe-form" class="visible">
+        <div class="flexbox flex-column align-items-center">
+            <div class="flexbox flex-column add-recipe-form justify-evenly">
+
+                <div class="flexbox flex-column gap-small">
+                    <h3>Editing Recipe #{{ recipe.id }}</h3>
+                    <p>Update the fields below then click Save Changes</p>
+                </div>
+
+                <form method="POST" action="{% url 'edit_recipe' recipe.id %}">
+                    {% csrf_token %}
+
+                    <div class="flexbox flex-column gap-small">
+                        <p>Recipe Name:</p>
+                        <input id="recipe_name" name="recipe_name" class="width-100" type="text"
+                               value="{{ recipe.name }}" placeholder="e.g., Spaghetti Carbonara" />
+                        <p hidden class="warning">Recipe name is required</p>
+                    </div>
+
+                    <div class="flexbox flex-column gap-small">
+                        <p>Course Type:</p>
+                        <select id="course_type" name="course_type" class="width-100">
+                            <option value="" disabled hidden>Select a Course Type</option>
+                            <option value="appetizer" {% if recipe.course_type == 'appetizer' %}selected{% endif %}>Appetizers</option>
+                            <option value="main course" {% if recipe.course_type == 'main course' %}selected{% endif %}>Main Course</option>
+                            <option value="dessert" {% if recipe.course_type == 'dessert' %}selected{% endif %}>Dessert</option>
+                        </select>
+                        <p hidden class="warning">Please select a course type</p>
+                    </div>
+
+                    <div class="flexbox flex-column gap-small">
+                        <p>Cooking Time:</p>
+                        <input id="cooking_time" name="cooking_time" class="width-100" type="text"
+                               value="{{ recipe.cooking_time }}" placeholder="e.g., 1 hour, 30min" />
+                        <p hidden class="warning">Cooking time is required</p>
+                    </div>
+
+                    <div class="flexbox flex-column gap-small">
+                        <p>Difficulty:</p>
+                        <select id="selected_difficulty" name="selected_difficulty" class="width-100">
+                            <option value="" disabled hidden>Select Recipe Difficulty</option>
+                            <option value="easy" {% if recipe.difficulty == 'easy' %}selected{% endif %}>Easy</option>
+                            <option value="medium" {% if recipe.difficulty == 'medium' %}selected{% endif %}>Medium</option>
+                            <option value="hard" {% if recipe.difficulty == 'hard' %}selected{% endif %}>Hard</option>
+                        </select>
+                        <p hidden class="warning">Please select a difficulty</p>
+                    </div>
+
+                    <div class="flexbox flex-column gap-small">
+                        <p>Recipe Image Link:</p>
+                        <input id="recipe_img" name="recipe_img" class="width-100" type="text"
+                               value="{{ recipe.recipe_img }}" placeholder="e.g., https://example.com/image.jpg"
+                               oninput="updatePreview()" />
+                        <img id="img-preview" src="{{ recipe.recipe_img }}" alt="Recipe preview" />
+                        <p hidden class="warning">Please enter a valid image URL</p>
+                    </div>
+
+                    <div class="flexbox flex-column gap-small">
+                        <div class="flexbox justify-between">
+                            <p>Instructions:</p>
+                            <button type="button" id="add_instruction">+ Add</button>
+                        </div>
+                        <div class="flexbox flex-column gap-small" id="all_instructions">
+                            {% for step in recipe.instructions.all %}
+                            <div class="flexbox flex-row gap-small">
+                                <input name="instructions" class="width-100" type="text" value="{{ step.text }}" />
+                                <button class="delete-btn" type="button">Delete</button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <p hidden class="warning">All instructions must be filled</p>
+                    </div>
+
+                    <div class="flexbox flex-column gap-small">
+                        <div class="flexbox justify-between">
+                            <p>Ingredients:</p>
+                            <button type="button" id="add_ingredient">+ Add</button>
+                        </div>
+                        <div class="flexbox flex-column gap-small" id="all_ingredients">
+                            {% for ingredient in recipe.ingredients.all %}
+                            <div class="flexbox flex-row gap-small">
+                                <input name="ingredients" class="width-100" type="text" value="{{ ingredient.text }}" />
+                                <button class="delete-btn" type="button">Delete</button>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        <p hidden class="warning">All ingredients must be filled</p>
+                    </div>
+
+                    <div class="action-buttons">
+                        <button class="btn-save" type="button" id="save_recipe">💾 Save Changes</button>
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'js/Recipes/adminRecipeDetails.js' %}"></script>
+{% endblock %}

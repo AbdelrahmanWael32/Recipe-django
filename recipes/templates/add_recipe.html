@@ -1,0 +1,137 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/Recipes/addRecipeStyle.css' %}" />
+{% endblock %}
+{% block title %}Add Recipe{% endblock %}
+
+{% block content %}
+    <div class="flexbox flex-column align-items-center mt-2">
+      <form class="flexbox flex-column add-recipe-form justify-evenly" method="POST">
+        {% csrf_token %}
+        <div class="flexbox flex-column gap-small">
+          <h3>Add New Recipe</h3>
+          <p>Fill in the details to create a new recipe</p>
+        </div>
+        <!-- RECIPE NAME INPUT -->
+        <div class="flexbox flex-column gap-small">
+          <p>Recipe Name:</p>
+          <input
+            id="recipe_name"
+            class="width-100"
+            type="text"
+            placeholder="e.g., Spaghetti Carbonara"
+            name="recipe_name"
+          />
+          <p hidden class="warning">Recipe name is required</p>
+        </div>
+
+        <!-- COURSE TYPE INPUT -->
+        <div class="flexbox flex-column gap-small">
+          <p>Course Type:</p>
+          <select id="course_type" class="width-100" name="course_type">
+            <option value="" disabled selected hidden>
+              Select a Course Type
+            </option>
+            <option>Appetizers</option>
+            <option>Main Course</option>
+            <option>Dessert</option>
+          </select>
+          <p hidden class="warning">Please Select a course type</p>
+        </div>
+
+        <!-- COOKING RECIPE TIME INPUT -->
+        <div class="flexbox flex-column gap-small">
+          <p>Cooking Time:</p>
+          <input
+            id="cooking_time"
+            class="width-100"
+            type="text"
+            placeholder="e.g., 1 hour, 30min"
+            name="cooking_time"
+          />
+          <p hidden class="warning">Cooking time is required</p>
+        </div>
+
+        <!-- DIFFICULTY INPUT -->
+        <div class="flexbox flex-column gap-small">
+          <p>Difficulty:</p>
+          <select id="selected_difficulty" class="width-100" name="selected_difficulty">
+            <option value="" disabled selected hidden>
+              Select Recipe Difficulty
+            </option>
+            <option>Easy</option>
+            <option>Medium</option>
+            <option>Hard</option>
+          </select>
+          <p hidden class="warning">Please select a difficulty</p>
+        </div>
+
+        <!-- RECIPE IMAGE INPUT -->
+        <div class="flexbox flex-column gap-small">
+          <p>Recipe Image Link:</p>
+          <input
+            id="recipe_img"
+            class="width-100"
+            type="text"
+            placeholder="e.g., https://example.com/image.jpg"
+            name="recipe_img"
+          />
+          <p hidden class="warning">Please Enter a valid Image link</p>
+        </div>
+
+        <!-- 
+            ALL INSTRUCTIONS INPUT
+        -->
+        <div class="flexbox flex-column gap-small">
+          <div class="flexbox justify-between">
+            <p>Instructions:</p>
+            <button type="button" id="add_instruction">+ Add</button>
+          </div>
+
+          <div class="flexbox flex-column gap-small" id="all_instructions">
+            <div class="flexbox flex-row gap-small">
+              <input
+                id="instruction_1"
+                class="width-100"
+                type="text"
+                placeholder="Step 1"
+                name="instructions"
+              />
+              <button class="delete-btn" type="button">Delete</button>
+            </div>
+          </div>
+          <p hidden class="warning">All instructions must be filled</p>
+        </div>
+
+        <!-- 
+            ALL INGREDIENTS INPUT
+        -->
+        <div class="flexbox flex-column gap-small">
+          <div class="flexbox justify-between">
+            <p>Ingredients:</p>
+            <button type="button" id="add_ingredient">+ Add</button>
+          </div>
+          <div class="flexbox flex-column gap-small" id="all_ingredients">
+            <div class="flexbox flex-row gap-small">
+              <input
+                id="ingredient_1"
+                class="width-100"
+                type="text"
+                placeholder="Ingredient 1"
+                name="ingredients"
+              />
+              <button class="delete-btn" type="button">Delete</button>
+            </div>
+          </div>
+          <p hidden class="warning">All ingredients must be filled</p>
+        </div>
+        <!-- END OF INPUTS -->
+
+        <button type="button" id="add_recipe">Add Recipe</button>
+      </form>
+    </div>
+    {% block extra_js %}
+    <script type="module" src="{% static 'js/Recipes/addRecipe.js' %}"></script>
+    {% endblock %}
+{% endblock %}

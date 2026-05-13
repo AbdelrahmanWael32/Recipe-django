@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Favorites{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/recipes/allRecipeStyle.css' %}" />
+{% endblock %}
+
+{% block content %}
+<h1 class="text-center">My Favorites</h1>
+
+<div class="justify-evenly flexbox flex-wrap all-recipes-container">
+  {% if recipes %}
+    {% for recipe in recipes %}
+        <a href="{% url 'recipe_detail' recipe.pk %}">
+        <div class="recipe-box flexbox flex-column justify-between align-items-center">
+            <img src="{{ recipe.recipe_img }}" alt="{{ recipe.name }}" width="250"/>
+            <h2>{{ recipe.name }}</h2>
+            <p>Course: {{ recipe.course_type }}</p>
+            <p>Time: {{ recipe.cooking_time }}</p>
+            <p>Difficulty: {{ recipe.difficulty }}</p>
+            <a href="{% url 'toggle_favorite' recipe.pk %}"
+                onclick="event.stopPropagation()">
+                <button type="button">
+                    {% if request.user.profile in recipe.favourited_by.all %}
+                        Unfavorite
+                    {% else %}
+                        Add to Favorites
+                    {% endif %}
+                </button>
+            </a>
+
+        </div>
+        </a>
+    {% endfor %}
+    {% else %}
+      <p>No favorite recipes found.</p>
+    {% endif %}
+
+</div>
+{% endblock %}
