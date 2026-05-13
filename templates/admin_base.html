@@ -1,0 +1,36 @@
+{% load static %}
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+  {% block css %}{% endblock %}
+  <title>{% block title %}Recipe Finder{% endblock %}</title>
+</head>
+<body>
+
+  <nav class="flexbox flex-row justify-around align-items-center navbar">
+    <div class="flexbox flex-row align-items-center gap-small">
+      <img class="nar-left" src="{% static "images/Logo2.png" %}" />
+      <a href="#">Dashboard </a>
+    </div>
+
+    <div class="flexbox justify-evenly nav-center">
+      <a href="{% url 'add_recipe' %}">Add recipe</a>
+    </div>
+
+    <div class="flexbox flex-row justify-center nav-end">
+      <a href="{% url 'home' %}">Exit Dashboard</a>
+    </div>
+  </nav>
+
+
+  {% block content %}{% endblock %}
+
+
+
+  {% block extra_js %}{% endblock %}
+</body>
+</html>

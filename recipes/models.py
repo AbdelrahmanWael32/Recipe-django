@@ -24,6 +24,24 @@ class Recipe(models.Model):
     def __str__(self):
         return self.name
     
+    @staticmethod
+    def create_recipe(recipe_name, course_type, selected_difficulty, cooking_time, recipe_img, ingredients, instructions):
+        recipe = Recipe.objects.create(
+            name=recipe_name,
+            course_type=course_type,
+            cooking_time=cooking_time,
+            difficulty=selected_difficulty,
+            recipe_img=recipe_img
+        )
+
+        for ingredient in ingredients:
+            Ingredient.objects.create(recipe=recipe, text=ingredient)
+
+        for i, instruction_text in enumerate(instructions, start=1):
+            print(i)
+            Instruction.objects.create(recipe=recipe, step_number = i, text=instruction_text)
+        return recipe
+    
 class Ingredient(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE, related_name="ingredients")
     text = models.CharField(max_length=255) 
