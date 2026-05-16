@@ -3,63 +3,160 @@
 
 {% block title %}Home - Recipe Finder{% endblock %}
 
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/index.css' %}" />
+{% endblock %}
+
 {% block content %}
 
 <!-- Hero Section -->
-<div style="text-align:center; padding: 4rem;">
-  <h1>The Best Family Recipes</h1>
-  <h2>Let's Find The Perfect Recipe For You!</h2>
-  <p>
+<div class="hero-section">
+  <div class="hero-text">
     {% if user.is_authenticated %}
-      Welcome, <strong>{{ user.username }}</strong>
+      <p class="hero-welcome">Welcome back, <strong>{{ user.username }}</strong></p>
     {% else %}
-      <a href="{% url 'signup' %}">Get Started</a>
+      <a href="{% url 'signup' %}" class="hero-btn">Get Started</a>
     {% endif %}
-  </p>
-</div>
-
-<!-- Hero Image -->
-<div>
-  <img width="100%" src="{% static 'Images/Cutting_Food.jpg' %}" alt="Cutting Food" />
-  <br /><br /><br />
+    <h1>The Best Family Recipes</h1>
+    <h2>Let's Find The Perfect Recipe For You!</h2>
+    <p>Discover over 2000 delicious recipes. Search by ingredients, save your favourites, and cook with confidence every day.</p>
+  </div>
+  <div class="hero-image">
+    <img src="{% static 'Images/Cutting_Food.jpg' %}" alt="Cutting Food" />
+  </div>
 </div>
 
 <!-- Features Section -->
-<div style="text-align:center;">
-  <h3>There Are So Many Recipes To Choose From With Us!</h3>
-  <h3>Over Than 2000 Recipes To Choose From!</h3>
-  <h3>Want To Make A Specific Dish? You Can Search With Ingredients!</h3>
-  <h3>Appetizers, Main Courses and Deserts. We Have It All!</h3>
-</div>
+<!-- <div class="features-section">
+  <h2>Why Recipe Finder?</h2>
+  <div class="features-grid">
+    <div class="feature-card">Over 2000 recipes to choose from</div>
+    <div class="feature-card">Search by ingredients</div>
+    <div class="feature-card">Appetizers, Main Courses and Desserts</div>
+    <div class="feature-card">Save your favourite recipes</div>
+  </div>
+</div> -->
 
-<br /><br /><br />
+<!-- Features Section -->
+<div class="features-section">
+  <h2>Why Recipe Finder?</h2>
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="feature-icon">🍽️</div>
+      <h3>2000+ Recipes</h3>
+      <p>Browse a huge collection of appetizers, main courses, and desserts.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">🔍</div>
+      <h3>Search by Ingredients</h3>
+      <p>Already have ingredients? Find recipes that match what you have.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">❤️</div>
+      <h3>Save Favourites</h3>
+      <p>Keep your favourite recipes saved and ready whenever you need them.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-icon">⏱️</div>
+      <h3>Plan Your Time</h3>
+      <p>Every recipe includes cooking time so you can plan your meals ahead.</p>
+    </div>
+
+  </div>
+</div>
 
 <!-- Testimonials Section -->
-<div style="text-align:center;">
+<!-- <div class="testimonials-section">
   <h2>Our Users Say</h2>
-  <p>"I have never had such wonderful meals like these" - Alex</p>
-  <p>"These recipes are perfect I can plan how much time I need to cook them" - Ahmed</p>
-  <p>"The instructions provided with the recipes always help me make dinner" - Basel</p>
-  <p>"Picking a meal has never been easier, I know which ingredients I need to plan ahead." - Omar</p>
-</div>
+  <div class="testimonials-grid">
+    <div class="testimonial-card">
+      "I have never had such wonderful meals like these"
+      <span>— Alex</span>
+    </div>
+    <div class="testimonial-card">
+      "These recipes are perfect, I can plan how much time I need to cook them"
+      <span>— Ahmed</span>
+    </div>
+    <div class="testimonial-card">
+      "The instructions provided with the recipes always help me make dinner"
+      <span>— Basel</span>
+    </div>
+    <div class="testimonial-card">
+      "Picking a meal has never been easier, I know which ingredients I need to plan ahead"
+      <span>— Omar</span>
+    </div>
+  </div>
+</div> -->
+<!-- Testimonials Section -->
+<div class="testimonials-section">
+  <h2>Our Partners, Our Family</h2>
+  <div class="testimonials-track-wrapper">
+    <div class="testimonials-grid">
 
-<br /><br /><br />
+      <div class="testimonial-card">
+        <p>"I have never had such wonderful meals like these"</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">AL</div>
+          <div>
+            <div class="testimonial-name">Alex</div>
+            <div class="testimonial-role">Home Cook</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p>"These recipes are perfect, I can plan how much time I need to cook them"</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">AH</div>
+          <div>
+            <div class="testimonial-name">Ahmed</div>
+            <div class="testimonial-role">Food Enthusiast</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p>"The instructions provided with the recipes always help me make dinner"</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">BA</div>
+          <div>
+            <div class="testimonial-name">Basel</div>
+            <div class="testimonial-role">Daily Cook</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p>"Picking a meal has never been easier, I know which ingredients I need to plan ahead"</p>
+        <div class="testimonial-footer">
+          <div class="testimonial-avatar">OM</div>
+          <div>
+            <div class="testimonial-name">Omar</div>
+            <div class="testimonial-role">Meal Planner</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
 
 <!-- Dishes Section -->
-<div>
-  <div style="text-align:center;">
-    <h1>Some Of Our Dishes:</h1>
+<div class="dishes-section">
+  <div class="dishes-section-header">
+    <h1>Some Of Our Dishes</h1>
     <a href="{% url 'all_recipes' %}">Check Out More Of Our Dishes</a>
-    <br /><br />
   </div>
-  <div>
-    <img width="24%" src="{% static 'Images/dish1.jpg' %}" alt="Dish 1" />
-    <img width="24%" src="{% static 'Images/dish2.jpg' %}" alt="Dish 2" />
-    <img width="24%" src="{% static 'Images/dish3.jpg' %}" alt="Dish 3" />
-    <img width="24%" src="{% static 'Images/dish4.jpg' %}" alt="Dish 4" />
+  <div class="dishes-grid">
+    <img src="{% static 'Images/dish1.jpg' %}" alt="Dish 1" />
+    <img src="{% static 'Images/dish2.jpg' %}" alt="Dish 2" />
+    <img src="{% static 'Images/dish3.jpg' %}" alt="Dish 3" />
+    <img src="{% static 'Images/dish4.jpg' %}" alt="Dish 4" />
   </div>
 </div>
-
-<br /><br /><br />
 
 {% endblock %}

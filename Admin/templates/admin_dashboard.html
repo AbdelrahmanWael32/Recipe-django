@@ -1,0 +1,47 @@
+{% extends 'admin_base.html' %}
+{% load static %}
+
+{% block title %}Admin Dashboard{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/Admin/dashboard.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+{% if recipe_added_msg %}
+  <div class="success-msg">{{ recipe_added_msg }}</div>
+{% endif %}
+
+<div class="dashboard-header">
+  <h1>List Of All Recipes</h1>
+  <a href="{% url 'add_recipe' %}" class="add-recipe-btn">+ Add Recipe</a>
+</div>
+
+<div class="recipes-container">
+  {% if recipes %}
+    {% for recipe in recipes %}
+      <div class="recipe-box">
+        <img src="{{ recipe.recipe_img }}" alt="{{ recipe.name }}" />
+        <div class="recipe-box-info">
+          <h2>Recipe #{{ forloop.counter }}</h2>
+          <a href="{% url 'recipe_detail' recipe.pk %}">{{ recipe.name }}</a>
+        </div>
+        <div class="recipe-box-btns">
+          <a href="{% url 'edit_recipe' recipe.pk %}" class="edit-btn">Edit</a>
+          <form method="POST" action="{% url 'delete_recipe' recipe.pk %}" style="flex:1;">
+            {% csrf_token %}
+            <button type="submit" class="delete-btn"
+              onclick="return confirm('Delete {{ recipe.name }}?')">
+              Delete
+            </button>
+          </form>
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p class="no-recipes">No recipes added yet.</p>
+  {% endif %}
+</div>
+
+{% endblock %}

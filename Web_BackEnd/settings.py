@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Accounts',
     'recipes',
+    'Admin',    # add admin app
 ]
 
 MIDDLEWARE = [
